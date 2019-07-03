@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using CarSaleApi.Models;
 using CarSaleApi.Services;
-using NSubstitute;
 using Xunit;
 
 namespace CarSalesApi.UnitTest.Services
@@ -17,20 +14,20 @@ namespace CarSalesApi.UnitTest.Services
             //arrange
             var discountService = new AmountDiscountService();
 
-            var cars = new List<Car>()
+            var cars = new List<Car>
             {
-                new Car()
+                new Car
                 {
                     Price = AmountDiscountService.AmountThreshold - 1,
                     MadeDateTime = DateTime.Now
                 },
-                new Car()
+                new Car
                 {
                     Price = AmountDiscountService.AmountThreshold,
                     MadeDateTime = DateTime.Now
                 }
             };
-            
+
 
             //act
             var result = discountService.Calculate(cars);
@@ -38,6 +35,5 @@ namespace CarSalesApi.UnitTest.Services
             //assert
             Assert.Equal(AmountDiscountService.AmountPercent, result);
         }
-
     }
 }

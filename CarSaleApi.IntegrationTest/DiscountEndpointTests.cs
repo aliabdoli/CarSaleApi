@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using CarSaleApi.Models;
 using CarSaleApi.Services;
@@ -13,11 +11,11 @@ using Xunit;
 namespace CarSaleApi.IntegrationTest
 {
     public class BasicEnpointTests
-        : IClassFixture<WebApplicationFactory<CarSaleApi.Startup>>
+        : IClassFixture<WebApplicationFactory<Startup>>
     {
-        private readonly WebApplicationFactory<CarSaleApi.Startup> _factory;
+        private readonly WebApplicationFactory<Startup> _factory;
 
-        public BasicEnpointTests(WebApplicationFactory<CarSaleApi.Startup> factory)
+        public BasicEnpointTests(WebApplicationFactory<Startup> factory)
         {
             _factory = factory;
         }
@@ -29,7 +27,7 @@ namespace CarSaleApi.IntegrationTest
             // Arrange
             var client = _factory.CreateClient();
 
-            var cars = Enumerable.Range(0, 4).Select(x => new Car()
+            var cars = Enumerable.Range(0, 4).Select(x => new Car
             {
                 Price = AmountDiscountService.AmountThreshold
             });

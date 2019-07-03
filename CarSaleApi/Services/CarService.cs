@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using CarSaleApi.Exeptions;
 using CarSaleApi.Models;
 using CarSaleApi.Repositories;
 using Microsoft.Extensions.Logging;
@@ -20,6 +16,7 @@ namespace CarSaleApi.Services
             _carRepository = carRepository;
             _logger = logger;
         }
+
         public async Task<int> AddAsync(Car car)
         {
             _logger.LogInformation("adding a car");

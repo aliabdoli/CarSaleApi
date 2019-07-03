@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CarSaleApi.Controllers;
-using CarSaleApi.Extensions;
+﻿using CarSaleApi.Extensions;
 using CarSaleApi.Middlewares;
-using CarSaleApi.Repositories;
-using CarSaleApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace CarSaleApi
 {
@@ -51,7 +41,7 @@ namespace CarSaleApi
                     errorApp.Run(context =>
                         context.Response.WriteAsync(new
                         {
-                            StatusCode = context.Response.StatusCode,
+                            context.Response.StatusCode,
                             Message = "Internal Server Error."
                         }.ToString())
                     );

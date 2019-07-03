@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CarSaleApi.Models;
 using CarSaleApi.Services;
@@ -12,7 +10,6 @@ namespace CarSalesApi.UnitTest.Services
 {
     public class DiscountAggregatorServiceTests
     {
-
         [Fact]
         public async Task WhenMultipleDiscount_ThenDiscountIsCumulative()
         {
@@ -32,7 +29,7 @@ namespace CarSalesApi.UnitTest.Services
             carService.GetCarsAsync(Arg.Any<List<int>>()).Returns(new List<Car>());
 
             //act
-            var result = await discountService.CalculateAsync(new List<int>() {1, 2});
+            var result = await discountService.CalculateAsync(new List<int> {1, 2});
 
             //assert
             Assert.Equal(numberOfDiscountServices, result.DiscountPercent);

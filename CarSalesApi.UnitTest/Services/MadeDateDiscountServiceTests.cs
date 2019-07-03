@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using CarSaleApi.Models;
 using CarSaleApi.Services;
 using NSubstitute;
@@ -18,7 +16,7 @@ namespace CarSalesApi.UnitTest.Services
             var carService = Substitute.For<ICarService>();
             var discountService = new MadeDateDiscountService();
 
-            var cars = Enumerable.Range(0, 2).Select(x => new Car()
+            var cars = Enumerable.Range(0, 2).Select(x => new Car
             {
                 MadeDateTime = discountService.MadeDateTimeThreshold.AddDays(-1)
             }).ToList();

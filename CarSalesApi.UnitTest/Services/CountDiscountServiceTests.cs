@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CarSaleApi.Models;
 using CarSaleApi.Services;
 using NSubstitute;
@@ -19,7 +17,7 @@ namespace CarSalesApi.UnitTest.Services
             var carService = Substitute.For<ICarService>();
             var discountService = new CountDiscountService();
 
-            var cars = Enumerable.Range(0, 5).Select(x => new Car()
+            var cars = Enumerable.Range(0, 5).Select(x => new Car
             {
                 MadeDateTime = DateTime.Now
             }).ToList();
@@ -33,6 +31,5 @@ namespace CarSalesApi.UnitTest.Services
             //assert
             Assert.Equal(CountDiscountService.QuantityPercent, result);
         }
-
     }
 }

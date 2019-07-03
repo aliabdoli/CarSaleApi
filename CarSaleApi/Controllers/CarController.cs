@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CarSaleApi.Models;
 using CarSaleApi.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,12 +18,12 @@ namespace CarSaleApi.Controllers
             _carService = carService;
             _logger = logger;
         }
+
         [HttpPost]
         public async Task<int> Post([FromBody] Car car)
         {
             using (_logger.BeginScope($"creating car. {car.Name}"))
             {
-                //TODO: add stasD and logging here and throttling
                 return await _carService.AddAsync(car);
             }
         }
@@ -36,7 +33,6 @@ namespace CarSaleApi.Controllers
         {
             using (_logger.BeginScope($"updating car. {car.Id}"))
             {
-                //TODO: not found should 404
                 await _carService.UpdateAsync(car);
             }
         }
@@ -46,10 +42,8 @@ namespace CarSaleApi.Controllers
         {
             using (_logger.BeginScope($"updating car. {id}"))
             {
-                //TODO: not found should 404
                 await _carService.GetCarAsync(id);
             }
         }
-
     }
 }
