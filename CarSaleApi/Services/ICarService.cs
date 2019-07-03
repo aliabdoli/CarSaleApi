@@ -8,9 +8,9 @@ namespace CarSaleApi.Services
 {
     public interface ICarService
     {
-        Task AddAsync(Car car);
+        Task<int> AddAsync(Car car);
         Task UpdateAsync(Car car);
-
+        Task<Car> GetCarAsync(int id);
         Task<List<Car>> GetCarsAsync(List<int> ids);
     }
 }

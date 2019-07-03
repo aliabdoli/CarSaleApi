@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using CarSaleApi.Controllers;
 using CarSaleApi.Extensions;
+using CarSaleApi.Middlewares;
 using CarSaleApi.Repositories;
 using CarSaleApi.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -44,10 +46,21 @@ namespace CarSaleApi
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseExceptionHandler(errorApp =>
+                {
+                    errorApp.Run(context =>
+                        context.Response.WriteAsync(new
+                        {
+                            StatusCode = context.Response.StatusCode,
+                            Message = "Internal Server Error."
+                        }.ToString())
+                    );
+                });
             }
 
             //app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
         }
     }
 }

@@ -22,12 +22,12 @@ namespace CarSaleApi.Controllers
             _logger = logger;
         }
         [HttpPost]
-        public async Task Post([FromBody] Car car)
+        public async Task<int> Post([FromBody] Car car)
         {
             using (_logger.BeginScope($"creating car. {car.Name}"))
             {
                 //TODO: add stasD and logging here and throttling
-                await _carService.AddAsync(car);
+                return await _carService.AddAsync(car);
             }
         }
 
@@ -40,5 +40,16 @@ namespace CarSaleApi.Controllers
                 await _carService.UpdateAsync(car);
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task Get(int id)
+        {
+            using (_logger.BeginScope($"updating car. {id}"))
+            {
+                //TODO: not found should 404
+                await _carService.GetCarAsync(id);
+            }
+        }
+
     }
 }

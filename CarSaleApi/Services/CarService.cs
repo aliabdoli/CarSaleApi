@@ -20,16 +20,23 @@ namespace CarSaleApi.Services
             _carRepository = carRepository;
             _logger = logger;
         }
-        public async Task AddAsync(Car car)
+        public async Task<int> AddAsync(Car car)
         {
             _logger.LogInformation("adding a car");
-            await _carRepository.AddAsync(car);
+            var newCar = await _carRepository.AddAsync(car);
+            return newCar.Id;
         }
 
         public async Task UpdateAsync(Car car)
         {
             _logger.LogInformation($"updating the car. car id: {car.Id}");
             await _carRepository.UpdateAsync(car);
+        }
+
+        public async Task<Car> GetCarAsync(int id)
+        {
+            _logger.LogInformation($"getting a car. car id: {id}");
+            return await _carRepository.GetCarAsync(id);
         }
 
         public async Task<List<Car>> GetCarsAsync(List<int> ids)
