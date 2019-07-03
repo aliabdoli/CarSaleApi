@@ -31,5 +31,27 @@ namespace CarSalesApi.UnitTest.Services
             //assert
             Assert.Equal(CountDiscountService.QuantityPercent, result);
         }
+
+        [Fact]
+        public void WhenNumberOfCarsIsLowerThanThreshold_ThenNoDiscount()
+        {
+            //arrange
+            var carService = Substitute.For<ICarService>();
+            var discountService = new CountDiscountService();
+
+            var cars = Enumerable.Range(0, 2).Select(x => new Car
+            {
+                MadeDateTime = DateTime.Now
+            }).ToList();
+
+            carService.GetCarsAsync(Arg.Any<List<int>>()).Returns(cars);
+
+
+            //act
+            var result = discountService.Calculate(cars);
+
+            //assert
+            Assert.Equal(0, result);
+        }
     }
 }

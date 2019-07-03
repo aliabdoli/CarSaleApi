@@ -35,5 +35,29 @@ namespace CarSalesApi.UnitTest.Services
             //assert
             Assert.Equal(AmountDiscountService.AmountPercent, result);
         }
+
+
+        [Fact]
+        public void WhenAmountIsLowerThanThreshold_ThenNoDiscount()
+        {
+            //arrange
+            var discountService = new AmountDiscountService();
+
+            var cars = new List<Car>
+            {
+                new Car
+                {
+                    Price = AmountDiscountService.AmountThreshold - 1,
+                    MadeDateTime = DateTime.Now
+                }
+            };
+
+
+            //act
+            var result = discountService.Calculate(cars);
+
+            //assert
+            Assert.Equal(0, result);
+        }
     }
 }
