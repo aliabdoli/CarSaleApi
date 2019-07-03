@@ -10,4 +10,5 @@
 8. Unit test for carService and controllers skipped
 11. Integration Test written for just the Discount endpoint
 12. Repositories are created as static. In real world they are usually async and thread safe
+13. Api documentations: there are some framework to create documentation page (request/response) for every endpoint
 
