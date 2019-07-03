@@ -11,7 +11,7 @@
 11. Integration Test written for just the Discount endpoint
 12. Repositories are created as static. In real world they are usually async and thread safe
 13. Api documentations: there are some framework to create documentation page (request/response) for every endpoint
-14. Commit history: normally commits are more meaningful (like reference to Gira ticket)
+14. Commit history: normally commits are more meaningful (like reference to Jira ticket)
 
 ## Note
 please note that this project is .net core 2.2, so, make sure you have correct sdk and run installed on your machine 
